@@ -1,0 +1,32 @@
+{
+  "name": "hodlife-website",
+  "version": "1.0.0",
+  "description": "Professional replica of HODLife Insurance website",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server -p 8000 -o",
+    "serve": "http-server -p 8000",
+    "dev": "live-server"
+  },
+  "keywords": [
+    "hodlife",
+    "insurance",
+    "crypto",
+    "digital-assets",
+    "website",
+    "responsive"
+  ],
+  "author": "Web Developer",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "live-server": "^1.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/hodlife-website"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
