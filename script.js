@@ -17,7 +17,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Form submission handler
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
+    contactForm.addEventListener('submit', async function (e) {
         // Get form values
         const name = document.getElementById('name').value;
         const lastname = document.getElementById('lastname').value;
@@ -39,7 +39,29 @@ if (contactForm) {
             return;
         }
 
-        // Allow native form submission to Netlify (do NOT call e.preventDefault() here)
+        // Trigger auto-reply function, then continue normal Netlify form submission
+        e.preventDefault();
+
+        try {
+            await fetch('/.netlify/functions/submission-created', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    data: {
+                        name,
+                        lastname,
+                        email,
+                        message
+                    }
+                })
+            });
+        } catch (error) {
+            console.error('Auto-reply function call failed:', error);
+        } finally {
+            contactForm.submit();
+        }
     });
 }
 
@@ -164,7 +186,7 @@ window.addEventListener('scroll', updateActiveNavLink);
 // Scroll to top button
 const scrollToTopBtn = document.querySelector('.scroll-to-top');
 
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     if (window.scrollY > 300) {
         scrollToTopBtn.classList.add('visible');
     } else {
@@ -172,7 +194,7 @@ window.addEventListener('scroll', function() {
     }
 });
 
-scrollToTopBtn.addEventListener('click', function() {
+scrollToTopBtn.addEventListener('click', function () {
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
