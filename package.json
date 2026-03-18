@@ -18,9 +18,13 @@
   ],
   "author": "Web Developer",
   "license": "MIT",
+  "dependencies": {
+    "@netlify/functions": "^5.1.2",
+    "resend": "^3.0.0"
+  },
   "devDependencies": {
     "http-server": "^14.1.1",
-    "live-server": "^1.2.2"
+    "live-server": "^1.2.0"
   },
   "repository": {
     "type": "git",
